@@ -1,0 +1,16 @@
+#file: noinspection SpellCheckingInspection
+prefix: "&7AutoBan &8» "
+auto-ban:
+  regex:
+    - "^[a-zA-Z]{3}\\d{3}$"
+    - "^\\d{3}[a-zA-Z]{3}$"
+  auto-trigger: true
+broadcast:
+  - "&r"
+  - "&c&l✘ &d&l呐呐呐 反作弊要开始狩猎各位可爱的作弊者了哦❤ &c&l✘ "
+  - "&c&l✘ &d&lねぇアンチカンニングちゃんが狩りを始めるんだよ❤ &c&l✘"
+  - "&r"
+ban-wave:
+  broadcast-delay: 5
+  max: 35
+  min: 25
