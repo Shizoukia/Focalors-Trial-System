@@ -16,29 +16,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-//比较难绷的事我没抄明白kautoban 这个主类现在非常的乱我只能说
+
 public final class Focalors extends JavaPlugin {
     public final List<OfflinePlayer> banWave = new CopyOnWriteArrayList<>();
-    @Override
-    public void reloadConfig() {
-        super.reloadConfig();
-    }
     public int banWaveMin = 10;
     public int banWaveMax = 30;
     public int broadcastDelay = 0;
     public final Random random = new Random();
-    public Focalors plugin;
-    BanWave punish = new BanWave();
-    public final static BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-
+    public BanWave punish = new BanWave();
+    public static final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
     public FileConfiguration config = this.getConfig();
     public String PREFIX = "&b&lFocalors &7» &r";
     public List<Pattern> REGEX = new ArrayList<>();
-
     public final String PERMISSION_NOTIFY = "focalors.notify";
-
     public static BukkitTask task = null;
-
     public int totalBanned = 0;
     public static Focalors INSTANCE;
 
@@ -63,18 +54,16 @@ public final class Focalors extends JavaPlugin {
         final String msg = "Loaded " + REGEX.size() + " auto-ban rules.";
         logger.log(Level.INFO, msg);
     }
+
     @Override
     public void onEnable() {
-        plugin = this;
         saveConfig();
         // Plugin startup logic
         getLogger().info("[Focalors] Enabled! Version: " + getDescription().getVersion() + " By Shizoukia");
         getCommand("focalors").setExecutor(new FocalorsCommands(this));
+        INSTANCE = this; // 直接使用this
     }
-    @Override
-    public void onLoad() {
-        INSTANCE = this;
-    }
+
     @Override
     public void onDisable() {
         // Plugin shutdown logic

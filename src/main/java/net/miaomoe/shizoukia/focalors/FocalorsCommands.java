@@ -21,12 +21,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class FocalorsCommands implements CommandExecutor {
     private Focalors plugin;
 
-    public final List<OfflinePlayer> banWave = new CopyOnWriteArrayList<>();
+    public List<OfflinePlayer> banWave = new CopyOnWriteArrayList<>();
     public BanWave banWaveHandler;
     public final AtomicBoolean banWaveActive = new AtomicBoolean(false);
 
     public FocalorsCommands(Focalors plugin) {
         this.plugin = plugin;
+        this.banWave = plugin.banWave;
     }
     public static StringBuilder argsBuilder(int startIndex, String[] args) {
         StringBuilder message = new StringBuilder();
@@ -45,7 +46,7 @@ public final class FocalorsCommands implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         this.banWaveHandler = new BanWave();
-        final String SYNTAX = plugin.PREFIX + "&c/kab <add/remove/list/reload/now/clear> [Player]";
+        final String SYNTAX = plugin.PREFIX + "&c/fts banwave <add/remove/list/reload/now/clear> [Player]";
         BanWave punish = new BanWave();
         if (args.length > 0) {
             if ("help".equalsIgnoreCase(args[0])) {
@@ -172,7 +173,7 @@ public final class FocalorsCommands implements CommandExecutor {
                         sender.sendMessage(ColorUtils.MsgColor(unknown));
                     } else {
                         if (args.length < 2) {
-                            sender.sendMessage(ColorUtils.MsgColor("&cUsage: /fts <add/remove/list/reload/now/clear> [Player]"));
+                            sender.sendMessage(ColorUtils.MsgColor("&cUsage: /fts banwave <add/remove/list/reload/now/clear> [Player]"));
                         } else {
                             switch (args[1]) {
                                 case "add":
