@@ -1,3 +1,9 @@
 name: Focalors
 version: '${project.version}'
+description: Focalors Trial System (The God of Justice)
+author: Shizoukia, FallenCrystal
 main: net.miaomoe.shizoukia.focalors.Focalors
+commands:
+  focalors:
+    description: focalors main help
+    aliases: [fts]
